@@ -2,7 +2,7 @@
 
 This project is an application that consumes the MercadoLibre API to allow users to search for products, add items to a shopping cart, remove items, and calculate the total price of the cart.
 
-<img src="./public/image.png" />
+<img src="./public/design.png" />
 
 ## Features
 
