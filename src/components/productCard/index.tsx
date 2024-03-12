@@ -3,17 +3,25 @@ import { IProductCard } from "../../@types/types";
 import { useCurrency } from "../../hooks/useCurrency";
 import { useContext } from "react";
 import AppContext from "../../context/appContext";
+import { toast } from "sonner";
 
 export const ProductCard = ({ data }: IProductCard) => {
   const { title, price, thumbnail } = data;
-  const convert = useCurrency()
-  const { cartItems, setCartItems, setCartVisible } = useContext(AppContext)
+  const convert = useCurrency();
+  const { cartItems, setCartItems, setCartVisible } = useContext(AppContext);
 
-  const handleCartItem = () =>  {
-    setCartItems([...cartItems, data])
-    setCartVisible(true)
-  }
-  
+  const existingProduct = cartItems.find((product) => product.id === data.id);
+
+  const handleCartItem = () => {
+    if (existingProduct) {
+      toast.message("Produto já adicionado ao carrinho");
+      return;
+    };
+
+    setCartItems([...cartItems, data]);
+    setCartVisible(true);
+  };
+
   return (
     <section className="w-full max-w-[300px] bg-white flex flex-col cursor-pointer relative hover:shadow">
       <img
@@ -29,7 +37,10 @@ export const ProductCard = ({ data }: IProductCard) => {
         <h2 className="text-base text-black/55 font-medium">{title}</h2>
       </div>
 
-      <button className="absolute top-0 right-0 w-11 h-11 m-[12px 15px] text-[#0c5dd6] flex items-center justify-center border-none rounded-full bg-[rgba(255, 255, 255, 0.8)] text-2xl" onClick={handleCartItem}>
+      <button
+        className="absolute top-0 right-0 w-11 h-11 m-[12px 15px] text-[#0c5dd6] flex items-center justify-center border-none rounded-full bg-[rgba(255, 255, 255, 0.8)] text-2xl"
+        onClick={handleCartItem}
+      >
         <BsFillCartPlusFill />
       </button>
     </section>

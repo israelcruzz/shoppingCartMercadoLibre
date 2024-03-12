@@ -8,7 +8,7 @@ export const Products = () => {
   const { products, setProducts, loading, setLoading } = useContext(AppContext);
 
   const fetchData = async () => {
-    const data = await fetchProducts("bring me the horizon");
+    const data = await fetchProducts("terno rei");
     setProducts(data);
     setLoading(false);
   };

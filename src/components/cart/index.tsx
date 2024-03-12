@@ -5,7 +5,7 @@ import AppContext from "../../context/appContext";
 import { useCurrency } from "../../hooks/useCurrency";
 
 export const Cart = () => {
-  const { cartVisible, setCartVisible, cartItems } = useContext(AppContext);
+  const { cartVisible, setCartVisible, cartItems, prices } = useContext(AppContext);
   const format = useCurrency();
 
   const handleCartNotVisible = () => {
@@ -48,8 +48,8 @@ export const Cart = () => {
 
       <div className="text-3xl font-medium py-4 border-t border-[#ddd]">
         {format.formatPTBR(
-          cartItems.reduce((acc, item) => {
-            return acc + item.price;
+          prices.reduce((acc, price) => {
+            return acc + price.price;
           }, 0)
         )}
       </div>

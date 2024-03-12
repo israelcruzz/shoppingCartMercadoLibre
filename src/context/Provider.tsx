@@ -7,6 +7,7 @@ export const Provider = ({ children }: IProviderProps) => {
   const [loading, setLoading] = useState(true)
   const [cartVisible, setCartVisible] = useState(false)
   const [cartItems, setCartItems] = useState([])
+  const [prices, setPrices] = useState([])
 
   const value = {
     products,
@@ -16,7 +17,9 @@ export const Provider = ({ children }: IProviderProps) => {
     cartVisible,
     setCartVisible,
     cartItems,
-    setCartItems
+    setCartItems,
+    prices,
+    setPrices
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
